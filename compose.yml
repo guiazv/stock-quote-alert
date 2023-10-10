@@ -1,0 +1,8 @@
+services:
+  mailpit:
+    image: axllent/mailpit
+    env_file:
+      - .env
+    ports:
+      - 8025:8025
+      - ${SMTP_PORT:-1025}:1025
