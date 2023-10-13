@@ -1,6 +1,6 @@
-namespace Stock.Utils
+namespace Utils
 {
-  static class Mailer
+  public static class Mailer
   {
     private static System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(Environment.GetEnvironmentVariable("SMTP_HOST"))
     {

@@ -18,7 +18,7 @@ namespace Utils
         }
 
         var key = parts[0].Trim();
-        var value = parts[1].Trim();
+        var value = parts[1].Trim().Trim('"');
         Environment.SetEnvironmentVariable(key, value);
       }
     }
