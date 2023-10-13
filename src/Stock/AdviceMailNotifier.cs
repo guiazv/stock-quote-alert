@@ -3,13 +3,13 @@ namespace Stock
 {
   public class AdviceMailNotifier : AdviceNotifier
   {
-    private string from;
-    private string to;
+    private readonly string _from;
+    private readonly string _to;
 
     public AdviceMailNotifier(string from, string to)
     {
-      this.from = from;
-      this.to = to;
+      _from = from;
+      _to = to;
     }
 
     public Task SendBuyAdvice(string stock, double stockPrice, double buyPrice)
@@ -17,8 +17,8 @@ namespace Stock
       Console.WriteLine("Sending buy stock recommendation mail!");
       return Utils.Mailer.Send(new System.Net.Mail.MailMessage()
       {
-        From = new System.Net.Mail.MailAddress(from),
-        To = { to },
+        From = new System.Net.Mail.MailAddress(_from),
+        To = { _to },
         Subject = $"Buy {stock}",
         Body = $"<p>Current price: {stockPrice:C2}; Configured buy price: {buyPrice:C2}</p>",
         IsBodyHtml = true,
@@ -30,8 +30,8 @@ namespace Stock
       Console.WriteLine("Sending sell stock recommendation mail!");
       return Utils.Mailer.Send(new System.Net.Mail.MailMessage()
       {
-        From = new System.Net.Mail.MailAddress(from),
-        To = { to },
+        From = new System.Net.Mail.MailAddress(_from),
+        To = { _to },
         Subject = $"Sell {stock}",
         Body = $"<p>Current price: {stockPrice:C2}; Configured sell price: {sellPrice:C2}</p>",
         IsBodyHtml = true,
